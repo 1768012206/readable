@@ -6,7 +6,7 @@
     "ajv": "^6.0.0-rc.1",
     "amazeui": "",
     "amazeui-react": "",
-    "jquery": "^2.2.3",
+    "jquery": "^3.3.1n",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-redux": "^5.0.7",
