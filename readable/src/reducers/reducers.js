@@ -31,10 +31,15 @@ function posts(state = initialPostState, action) {
                 posts: action.posts
             }
         case GET_POST:
+            let error = ""
+            if(action.post == null) {
+                error = true
+            }
             return {
                 ...state,
                 post: action.post,
-                comments: state.comments
+                comments: state.comments,
+                error: error
             }
         case GET_COMMENT:
             return {

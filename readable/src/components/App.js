@@ -7,24 +7,28 @@ import postDetail from "./postDetail"
 import PostEdit from "./postEdit"
 import PostAdd from "./postAdd"
 import CommentEdit from "./commentEdit"
-import {BrowserRouter, Route} from 'react-router-dom'
+import Error from "./error"
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
 
 class App extends Component {
 
     render() {
         return (
-                <BrowserRouter>
-                    <div>
-                        <Header/>
+            <BrowserRouter>
+                <div>
+                    <Header/>
+                    <Switch>
                         <Route exact path="/" component={PostWrapper}></Route>
                         <Route path="/detail/:id" component={postDetail}></Route>
                         <Route path="/postEdit/:id" component={PostEdit}></Route>
                         <Route path="/postAdd/" component={PostAdd}></Route>
-                         <Route path="/commentEdit/:id" component={CommentEdit}></Route>
-                        <Footer/>
-                    </div>
-                </BrowserRouter>
+                        <Route path="/commentEdit/:id" component={CommentEdit}></Route>
+                        <Route path="/404" component={Error}></Route>
+                    </Switch>
+                    <Footer/>
+                </div>
+            </BrowserRouter>
         );
     }
 }

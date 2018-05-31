@@ -29,14 +29,52 @@ export const getUid = function uuid(len, radix) {
 
 
 export const timeStampToString = (time) => {
-        var datetime = new Date();
-        datetime.setTime(time);
-        var year = datetime.getFullYear();
-        var month = datetime.getMonth() + 1;
-        var date = datetime.getDate();
-        var hour = datetime.getHours();
-        var minute = datetime.getMinutes();
-        var second = datetime.getSeconds();
-        var mseconds = datetime.getMilliseconds();
-        return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second + "." + mseconds;
+    var datetime = new Date();
+    datetime.setTime(time);
+    var year = datetime.getFullYear();
+    var month = datetime.getMonth() + 1;
+    var date = datetime.getDate();
+    var hour = datetime.getHours();
+    var minute = datetime.getMinutes();
+    var second = datetime.getSeconds();
+    var mseconds = datetime.getMilliseconds();
+    return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second + "." + mseconds;
+}
+export const sortByTime = (data) => {
+    let temp;
+    for (let i = 0; i < data.length; i++) {
+        for (let j = i; j < data.length; j++) {
+            if (data[j].timestamp > data[i].timestamp) {
+                temp = data[i]
+                data[i] = data[j]
+                data[j] = temp
+            }
+        }
     }
+}
+
+export const sortByVoteScore = (data) => {
+    let temp;
+    for (let i = 0; i < data.length; i++) {
+        for (let j = i; j < data.length; j++) {
+            if (data[j].voteScore > data[i].voteScore) {
+                temp = data[i]
+                data[i] = data[j]
+                data[j] = temp
+            }
+        }
+    }
+}
+
+export const sortByCategories = (data, category) => {
+    for (let i = data.length - 1; i >= 0; i--) {
+        data[i]['hidden'] = false
+    }
+
+    for (let i = data.length - 1; i >= 0; i--) {
+        if (category !== "")
+            if (data[i].name === category) {
+                data[i]['hidden'] = true
+            }
+    }
+}

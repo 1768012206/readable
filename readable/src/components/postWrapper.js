@@ -4,6 +4,7 @@ import {fetchAllPosts, fetchAllCategories} from "../actions/actions"
 import {connect} from "react-redux"
 import {Dropdown} from "amazeui-react"
 import {Link} from 'react-router-dom'
+import {sortByTime, sortByVoteScore} from "../utils"
 
 //所有帖子展示
 class PostWrapper extends Component {
@@ -21,6 +22,7 @@ class PostWrapper extends Component {
     componentDidMount() {
         this.props.dispatch(fetchAllPosts())
         this.props.dispatch(fetchAllCategories())
+
     }
 
     sortByCategories = () => {
@@ -32,35 +34,6 @@ class PostWrapper extends Component {
             if (this.category !== "")
                 if (this.props.posts[i].category === this.category)
                     this.props.posts[i]['hidden'] = true
-        }
-        this.setState({isFresh: this.state.isFresh + 1})
-    }
-
-    sortByTime = () => {
-        let temp;
-        for (let i = 0; i < this.props.posts.length; i++) {
-            for (let j = i; j < this.props.posts.length; j++) {
-                if (this.props.posts[j].timestamp > this.props.posts[i].timestamp) {
-                    temp = this.props.posts[i]
-                    this.props.posts[i] = this.props.posts[j]
-                    this.props.posts[j] = temp
-                }
-            }
-        }
-        this.setState({isFresh: this.state.isFresh + 1})
-    }
-
-
-    sortByVoteScore = () => {
-        let temp;
-        for (let i = 0; i < this.props.posts.length; i++) {
-            for (let j = i; j < this.props.posts.length; j++) {
-                if (this.props.posts[j].voteScore > this.props.posts[i].voteScore) {
-                    temp = this.props.posts[i]
-                    this.props.posts[i] = this.props.posts[j]
-                    this.props.posts[j] = temp
-                }
-            }
         }
         this.setState({isFresh: this.state.isFresh + 1})
     }
@@ -87,12 +60,14 @@ class PostWrapper extends Component {
                             <Dropdown.Item ref="time"
                                            onClick={(e) => {
                                                this.sorted = e.target.innerHTML
-                                               this.sortByTime()
+                                               sortByTime(this.props.posts)
+                                               this.setState({isFresh: this.state.isFresh + 1})
                                            }}>时间</Dropdown.Item>
                             <Dropdown.Item ref="voteScore"
                                            onClick={(e) => {
                                                this.sorted = e.target.innerHTML
-                                               this.sortByVoteScore()
+                                               sortByVoteScore(this.props.posts)
+                                               this.setState({isFresh: this.state.isFresh + 1})
                                            }}>点赞数</Dropdown.Item>
                         </Dropdown>
                     </div>
