@@ -35,34 +35,6 @@ class PostDetail extends Component {
         this.props.dispatch(fetchPost(this.props.match.params.id))
     }
 
-    // sortByTime = () => {
-    //     let temp;
-    //     for (let i = 0; i < this.props.comments.length; i++) {
-    //         for (let j = i; j < this.props.comments.length; j++) {
-    //             if (this.props.comments[j].timestamp > this.props.comments[i].timestamp) {
-    //                 temp = this.props.comments[i]
-    //                 this.props.comments[i] = this.props.comments[j]
-    //                 this.props.comments[j] = temp
-    //             }
-    //         }
-    //     }
-    //     this.setState({isFresh: this.state.isFresh + 1})
-    // }
-    //
-    // sortByVoteScore = () => {
-    //     let temp;
-    //     for (let i = 0; i < this.props.comments.length; i++) {
-    //         for (let j = i; j < this.props.comments.length; j++) {
-    //             if (this.props.comments[j].voteScore > this.props.comments[i].voteScore) {
-    //                 temp = this.props.comments[i]
-    //                 this.props.comments[i] = this.props.comments[j]
-    //                 this.props.comments[j] = temp
-    //             }
-    //         }
-    //     }
-    //     this.setState({isFresh: this.state.isFresh + 1})
-    // }
-
     render() {
         if (this.props.error) {
             return (

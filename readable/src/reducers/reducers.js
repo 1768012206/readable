@@ -32,7 +32,7 @@ function posts(state = initialPostState, action) {
             }
         case GET_POST:
             let error = ""
-            if(action.post == null) {
+            if(action.post.error || JSON.stringify(action.post)==='{}') {
                 error = true
             }
             return {
