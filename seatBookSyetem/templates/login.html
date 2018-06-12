@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>searBookSystem</title>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/htmleaf-demo.css">
+    <link href="../static/css/signin.css" rel="stylesheet">
+</head>
+<body>
+<div class="htmleaf-container">
+    <header class="htmleaf-header">
+        <h1>SeatBookSystem</h1>
+    </header>
+    <div class="signin">
+        <form class="form-signin" role="form" action="/login" method="post">
+            {{ form.hidden_tag() }}
+            {{ form.username(class="form-control", id='username', placeholder="用户名") }}
+            {{ form.password(class="form-control", id='password', placeholder="密码") }}
+            <button class="btn btn-lg btn-warning btn-block" type="submit">登录</button>
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
